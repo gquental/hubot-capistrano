@@ -12,5 +12,5 @@ class FolderReader
 
   getPath: ->
     @path
-  
+
 module.exports = FolderReader
