@@ -1,0 +1,22 @@
+{
+  "name": "hubot-capistrano",
+  "version": "1.0.0",
+  "description": "Allows deploy flow through capistrano",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gquental/hubot-capistrano.git"
+  },
+  "keywords": [
+    "hubot",
+    "capistrano",
+    "script"
+  ],
+  "author": "Guilherme Quental <guilherme@quent.al>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "75e1bc73157c2feacd4a0a5b34f3d345f3312aef",
+
+  "devDependencies": {
+    "coffee-script": "*"
+  }
+}
