@@ -10,6 +10,9 @@ class FolderReader
   filterFolders: (folders) ->
     (folder for folder in folders when (fs.statSync @path + folder).isDirectory() is true)
 
+  exists: (path) ->
+    fs.existsSync path
+
   getPath: ->
     @path
 
