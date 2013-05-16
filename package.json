@@ -19,6 +19,7 @@
     "coffee-script": "*"
   },
   "dependencies": {
-    "cjson": "~0.2.1"
+    "cjson": "~0.2.1",
+    "carrier": "~0.1.10"
   }
 }
