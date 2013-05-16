@@ -1,5 +1,4 @@
 ProjectContainer = require '../project/ProjectContainer'
-cjson             = require 'cjson'
 
 class PermissionHandler
   constructor: (@FolderReader) ->
@@ -17,14 +16,15 @@ class PermissionHandler
 
     @createProject path, project
 
+  getUsers: (project) ->
+    @projects.get(project).getUsers(project)
+
   createProject: (path, project) ->
     jsonPath = "#{path}/project.json"
 
     if (!@FolderReader.exists(jsonPath))
       return false
 
-    json = cjson.load jsonPath
-
-    @projects.newProject(project, json)
+    @projects.newProject(project, jsonPath)
 
 module.exports = PermissionHandler
