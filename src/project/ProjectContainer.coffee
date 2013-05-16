@@ -1,6 +1,6 @@
 Project = require './Project'
 
-class ProjectCollection
+class ProjectContainer
   constructor: ->
     @projects = {}
 
@@ -17,4 +17,4 @@ class ProjectCollection
 
     @projects[projectName]
 
-module.exports = ProjectCollection
+module.exports = ProjectContainer

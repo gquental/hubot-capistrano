@@ -1,9 +1,9 @@
-ProjectCollection = require '../project/ProjectCollection'
+ProjectContainer = require '../project/ProjectContainer'
 cjson             = require 'cjson'
 
 class PermissionHandler
   constructor: (@FolderReader) ->
-    @projects = new ProjectCollection
+    @projects = new ProjectContainer
 
   hasPermission: (user, project) ->
     @searchProject @FolderReader.getPath() + project, project
