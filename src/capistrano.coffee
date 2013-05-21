@@ -11,17 +11,21 @@ cap        = new Capistrano
 
 module.exports = (robot) ->
 
-  robot.respond /(cap|capistrano) ([a-z0-9]+) (.*)/i, (msg) ->
+  robot.hear /list projects/i, (msg) ->
+    msg.send "Project list: #{folder.getProjects().join(', ')}"
+
+  robot.hear /(cap|capistrano) ([a-z0-9]+) (.*)/i, (msg) ->
     project  = msg.match[2]
     command  = msg.match[3]
-    username = msg.message.user.name
+    username = msg.message.user.room.split('@')[0]
 
     if (!folder.projectExists project)
       return msg.send "This project doesn't exists."
 
     if (!permission.hasPermission username, project)
       msg.send "You don't have permission in this project"
-      msg.send "Please talk with #{permission.getUsers(project)}"
+      msg.send "Please talk with #{permission.getUsers(project)}" if permission.getUsers(project).length > 0
       return false
 
     cap.execute project, command, msg
+
