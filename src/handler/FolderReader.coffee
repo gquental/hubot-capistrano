@@ -2,27 +2,41 @@ fs = require 'fs'
 
 class FolderReader
   constructor: (@path) ->
+    @folders = []
+
     @readFolders()
 
     setInterval(
       =>
         @readFolders()
-      5 * 60 * 1000
+      1000
     )
 
   readFolders: ->
-    @folders = @filterFolders fs.readdirSync @path
+    fs.readdir @path, (err, folders) =>
+      throw new Error err if err
+
+      @filterFolders folders
+
 
   filterFolders: (folders) ->
-    (folder for folder in folders when (fs.statSync @path + folder).isDirectory() is true)
+    folders.forEach (folder) =>
+      fs.stat @path + folder, (err, stat) =>
+        throw new Error err if err
 
-  exists: (path) ->
-    fs.existsSync path
+        @folders.push(folder) if stat.isDirectory()
+
+  exists: (path, callback) ->
+    fs.exists path, (exists) ->
+      callback exists
 
   projectExists: (project) ->
     project in @folders
 
   getPath: ->
     @path
+
+  getProjects: ->
+    @folders
 
 module.exports = FolderReader
