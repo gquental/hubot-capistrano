@@ -1,6 +1,6 @@
 {
   "name": "hubot-capistrano",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Allows deploy flow through capistrano",
   "repository": {
     "type": "git",
