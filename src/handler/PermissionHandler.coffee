@@ -11,10 +11,9 @@ class PermissionHandler
   searchProject: (path, project) ->
     if (@projects.get(project).exists)
       return true
-    if (!@FolderReader.exists(path))
-      return false
 
-    @createProject path, project
+    @FolderReader.exists path, (exists) =>
+      @createProject(path, project) if exists
 
   getUsers: (project) ->
     @projects.get(project).getUsers(project)
@@ -22,9 +21,7 @@ class PermissionHandler
   createProject: (path, project) ->
     jsonPath = "#{path}/project.json"
 
-    if (!@FolderReader.exists(jsonPath))
-      return false
-
-    @projects.newProject(project, jsonPath)
+    @FolderReader.exists jsonPath, (exists) =>
+      @projects.newProject(project, jsonPath) if exists
 
 module.exports = PermissionHandler

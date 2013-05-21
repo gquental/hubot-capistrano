@@ -1,8 +1,8 @@
 cjson = require 'cjson'
 
 class Project
-  constructor: (@name, @jsonPath) ->
-    @exists = true
+  constructor: (@name, @jsonPath, @exists = true) ->
+    @users  = []
 
     @updateUsers()
 
@@ -19,7 +19,8 @@ class Project
     @users.join ', '
 
   updateUsers: ->
-    json = cjson.load @jsonPath
-    @users = json.users
+    if @jsonPath
+      json = cjson.load @jsonPath
+      @users = json.users
 
 module.exports = Project
