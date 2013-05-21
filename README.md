@@ -13,7 +13,7 @@ The project.json is responsible to define the list of users that will be allowed
 
 ##Configuration
 
-The first step is to configure the path of the folder of projects in the environment variable. This path must ends with "**/**".
+The first step is to configure the path of the folder of projects in the environment variable. This path must ends with "/".
 
 ###Configuring a project
 In the project json you should have a file like this
