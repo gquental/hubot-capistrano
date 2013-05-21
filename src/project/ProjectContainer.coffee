@@ -9,11 +9,7 @@ class ProjectContainer
 
   get: (projectName) ->
     if (!@projects[projectName])
-      return {
-        exists: false,
-        hasUser: (user) ->
-          false
-      }
+      return new Project 'fake', false, false
 
     @projects[projectName]
 
