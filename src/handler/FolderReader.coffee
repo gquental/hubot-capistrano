@@ -15,7 +15,8 @@ class FolderReader
   readFolders: ->
     fs.readdir @path, (err, folders) =>
       throw new Error err if err
-
+      
+      @folders = []
       @filterFolders folders
 
 
